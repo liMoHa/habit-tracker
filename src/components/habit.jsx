@@ -1,37 +1,36 @@
 import React, {Component} from 'react';
-import Habits from './habits';
 
 class Habit extends Component{
-    state = {
-        count: 0,
-    };
-    
     handleIncrease = () =>{
-        this.setState({count: this.state.count + 1});
+        this.props.onIncrease(this.props.habit);
+    }
+    
+    handleDecrease = (habit) => {
+        this.props.onDecrease(this.props.habit);
+    }
+    
+    handleDelete = () => {
+        this.props.onDelete(this.props.habit);
     }
 
-    handleDecrease = () =>{
-        const count = this.state.count - 1;
-        this.setState({count: count < 0 ? 0 : count});
-    }
-
-    handleDelete = () =>{
-        this.setState({count: 0});
-    }
+    
     render(){
+        // 이렇게 한 번에 작성할 수도 있음.
+        /* 단, 이름이 같아야 함. */
+        const { name, count }= this.props.habit;
         
         return(
             <li className="habit">
-                <span className="habit-name">Reading</span>
-                <span className="habit-count">{this.state.count}</span>
+                <span className="habit-name">{name}</span>
+                <span className="habit-count">{count}</span>
                 <button className="habit-button habit-increase" onClick={this.handleIncrease}>
-                    <i class="fas fa-plus-square "></i>
+                    <i className="fas fa-plus-square "></i>
                 </button>
                 <button className="habit-button habit-decrease" onClick={this.handleDecrease}>
-                    <i class="fas fa-minus-square"></i>
+                    <i className="fas fa-minus-square"></i>
                 </button>
                 <button className="habit-button habit-delete" onClick={this.handleDelete}>
-                    <i class="fas fa-trash"></i>
+                    <i className="fas fa-trash"></i>
                 </button>
             </li>
         );
