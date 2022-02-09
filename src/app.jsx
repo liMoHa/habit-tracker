@@ -67,18 +67,27 @@ class App extends Component {
     this.setState({habits});
 }
 
+  handleClickBtn = () => {
+    const habits = [...this.state.habits];
+    habits.forEach( habit => {
+        habit.count = 0;
+    });
+    this.setState({habits});
+    this.setState({navbarCount : 0});
+  }
+
   render(){
     return (
       <>
-        <Navbar count={this.state}></Navbar>
-        <Add onAdd={this.handleAdd}></Add>
+        <Navbar count={this.state} />
+        <Add onAdd={this.handleAdd} />
         <Habits
           habits={this.state.habits} 
           onIncrease={this.handleIncrease}
           onDecrease={this.handleDecrease}
-          onDelete={this.handleDelete} 
-        >
-        </Habits>
+          onDelete={this.handleDelete}
+          onClickBtn={this.handleClickBtn}
+        />
       </>
     );
   }
