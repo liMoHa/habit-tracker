@@ -5,7 +5,7 @@ class Habit extends Component{
         this.props.onIncrease(this.props.habit);
     }
     
-    handleDecrease = (habit) => {
+    handleDecrease = () => {
         this.props.onDecrease(this.props.habit);
     }
     

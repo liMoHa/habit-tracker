@@ -4,6 +4,7 @@ import './index.css';
 import App from './app';
 import '@fortawesome/fontawesome-free/js/all.js';
 
+// root노드로 component전달
 ReactDOM.render(
   <React.StrictMode>
     <App />
