@@ -1,5 +1,6 @@
 import { Component } from 'react/cjs/react.development';
 import './app.css';
+import Add from './components/add';
 import Habits from './components/habits';
 import Navbar from './components/navbar';
 
@@ -50,7 +51,6 @@ class App extends Component {
 
   handleDelete = (habit) => {
       const habits = this.state.habits.filter(item => item.id !== habit.id );
-      console.log('i"m here', habits);
       this.setState({habits});
 
       let navbarCount = this.state.navbarCount; // 복사하는 API가 있겠지 아마
@@ -59,10 +59,19 @@ class App extends Component {
       this.setState({ navbarCount });
   }
 
+  handleAdd = (habitName) => {
+    const id = this.state.habits.length;
+    const habit = { id: id, name: habitName, count: 0};
+    const habits = [...this.state.habits];
+    habits.push(habit);
+    this.setState({habits});
+}
+
   render(){
     return (
       <>
         <Navbar count={this.state}></Navbar>
+        <Add onAdd={this.handleAdd}></Add>
         <Habits
           habits={this.state.habits} 
           onIncrease={this.handleIncrease}

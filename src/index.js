@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './app';
+import App from './app.jsx';
 import '@fortawesome/fontawesome-free/js/all.js';
 
 // root노드로 component전달
