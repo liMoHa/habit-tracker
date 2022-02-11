@@ -14,26 +14,25 @@ class App extends Component {
   };
 
   handleIncrease = (habit) => {
-    /* habit.count++;
-    console.log(habit.count);
-    this.setState(this.state); 
-    직접 변경 하는 것은 좋지 않음.
-    */
-
     // 여기 있는 habits 배열도 직접 state배열에 접근하는 것과 같음. 뒤에서 수정할 예정
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      } else return item;
+    });
     this.setState({ habits });
   };
 
   handleDecrease = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count < 0 ? 0 : count;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return {
+          ...habit,
+          count: habit.count === 0 ? 0 : habit.count - 1,
+        };
+      } else return item;
+    });
     this.setState({ habits });
-    // 왜 객체 통째로 update해줘야 되지
   };
 
   handleDelete = (habit) => {
@@ -48,9 +47,10 @@ class App extends Component {
   };
 
   handleReset = () => {
-    const habits = [...this.state.habits];
-    habits.forEach((habit) => {
-      habit.count = 0;
+    const habits = this.state.habits.map((habit) => {
+      if (habit.count !== 0) {
+        return { ...habit, count: 0 };
+      } else return habit;
     });
     this.setState({ habits });
   };

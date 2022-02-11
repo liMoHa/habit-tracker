@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Habit extends Component {
+class Habit extends PureComponent {
   onIncrease = () => {
     this.props.onIncrease(this.props.habit);
   };
@@ -17,7 +17,6 @@ class Habit extends Component {
     // 이렇게 한 번에 작성할 수도 있음.
     /* 단, 이름이 같아야 함. */
     const { name, count } = this.props.habit;
-
     return (
       <li className="habit">
         <span className="habit-name">{name}</span>

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class HabitAddForm extends Component {
+class HabitAddForm extends PureComponent {
   inputRef = React.createRef();
   formRef = React.createRef();
   // this 바인딩 공부해야겠다 이렇게 작성했을 때 되는 이유를 모르겠네
